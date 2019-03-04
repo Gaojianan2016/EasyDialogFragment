@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="120dp"
+    android:layout_height="120dp"
+    android:background="@drawable/dialog_loading_bg"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:padding="5dp">
+
+    <ProgressBar
+        android:id="@+id/loading_dialog"
+        style="?android:attr/progressBarStyle"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:indeterminateBehavior="repeat"
+        android:indeterminateDrawable="@drawable/anim_loadding"
+        android:indeterminateOnly="true"
+        android:padding="10dp" />
+
+    <TextView
+        android:id="@+id/loadtext_dialog"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="10dp"
+        android:text="加载中"
+        android:textColor="@android:color/white" />
+</LinearLayout>
