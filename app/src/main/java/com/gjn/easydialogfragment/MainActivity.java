@@ -90,7 +90,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn7).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                manager.showMiddleLoading();
+                manager.showMiddleLoading("加载中");
             }
         });
 

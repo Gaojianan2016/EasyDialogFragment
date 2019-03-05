@@ -12,7 +12,7 @@ allprojects {
 
 
 dependencies {
-    implementation 'com.github.Gaojianan2016:EasyDialogFragment:1.0.6'
+    implementation 'com.github.Gaojianan2016:EasyDialogFragment:1.0.7'
 }
 ```
 

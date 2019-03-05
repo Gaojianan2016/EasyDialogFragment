@@ -43,6 +43,23 @@ public class NormalDFragment extends BaseDFragment {
         return dFragment;
     }
 
+    public void setCreate(@LayoutRes int id){
+        this.layoutId = id;
+    }
+
+    public void setCreate(IDFragmentConvertView create){
+        this.create = create;
+    }
+
+    public void setCreate(@LayoutRes int id, IDFragmentConvertView create){
+        setCreate(id);
+        setCreate(create);
+    }
+
+    public void setDialogBuilder(AlertDialog.Builder builder){
+        this.dialogBuilder = builder;
+    }
+
     @Override
     protected AlertDialog.Builder getDialogBuilder() {
         return dialogBuilder;

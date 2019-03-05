@@ -16,6 +16,8 @@ import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.gjn.easydialoglibrary.base.BaseDFragment;
@@ -324,36 +326,6 @@ public class EasyDFragmentManager {
     }
 
     public NormalDFragment getLoadingDialog(final int size, final CharSequence loadtext) {
-        NormalDFragment dFragment = getEasyDialog(R.layout.dialog_loading, new IDFragmentConvertView() {
-            @Override
-            public void convertView(ViewHolder holder, DialogFragment dialogFragment) {
-                TextView tv = null;
-                for (int i = 0; i < ((ViewGroup) holder.getView()).getChildCount(); i++) {
-                    if (((ViewGroup) holder.getView()).getChildAt(i) instanceof TextView) {
-                        tv = (TextView) ((ViewGroup) holder.getView()).getChildAt(i);
-                    }
-                }
-                if (tv != null) {
-                    if (loadtext != null) {
-                        tv.setText(loadtext);
-                    } else {
-                        tv.setVisibility(View.GONE);
-                    }
-                    switch (size) {
-                        case SMALL_SIZE:
-                            tv.setVisibility(View.GONE);
-                            break;
-                        case MIDDLE_SIZE:
-                            tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
-                            break;
-                        case LARGE_SIZE:
-                        default:
-                            tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
-                            break;
-                    }
-                }
-            }
-        });
         int edge = activity.getResources().getDisplayMetrics().widthPixels;
         switch (size) {
             case SMALL_SIZE:
@@ -367,22 +339,94 @@ public class EasyDFragmentManager {
                 edge /= 3;
                 break;
         }
+        NormalDFragment dFragment = getEasyDialog(R.layout.dialog_loading, new IDFragmentConvertView() {
+            @Override
+            public void convertView(ViewHolder holder, DialogFragment dialogFragment) {
+                TextView tv = null;
+                ProgressBar pb = null;
+                for (int i = 0; i < ((ViewGroup) holder.getView()).getChildCount(); i++) {
+                    if (((ViewGroup) holder.getView()).getChildAt(i) instanceof TextView) {
+                        tv = (TextView) ((ViewGroup) holder.getView()).getChildAt(i);
+                    }else if(((ViewGroup) holder.getView()).getChildAt(i) instanceof ProgressBar){
+                        pb = (ProgressBar) ((ViewGroup) holder.getView()).getChildAt(i);
+                    }
+                }
+                if (tv != null && pb != null) {
+                    int padding;
+                    if (size == SMALL_SIZE) {
+                        tv.setVisibility(View.GONE);
+                        padding = getPadding(5);
+                    }else {
+                        if (loadtext == null) {
+                            tv.setVisibility(View.GONE);
+                            if (size == MIDDLE_SIZE) {
+                                padding = getPadding(20);
+                            }else {
+                                padding = getPadding(35);
+                            }
+                        }else {
+                            tv.setText(loadtext);
+                            if (size == MIDDLE_SIZE) {
+                                padding = getPadding(5);
+                            }else {
+                                padding = getPadding(10);
+                            }
+                        }
+                        if (size == MIDDLE_SIZE) {
+                            tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+                        }else {
+                            tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
+                        }
+                    }
+                    pb.setPadding(padding, padding, padding, padding);
+                }
+            }
+        });
         dFragment.setWidth(edge);
         dFragment.setHeight(edge);
         dFragment.setCloseOnTouchOutside(false);
         return dFragment;
     }
 
+    private int getPadding(float size) {
+        return (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, size,
+                activity.getResources().getDisplayMetrics());
+    }
+
     public void showLargeLoading() {
+        largeLoadingDialog.setCreate(getLoadingDialog(LARGE_SIZE));
         showOnlyDialog(largeLoadingDialog);
     }
 
     public void showMiddleLoading() {
+        middleLoadingDialog.setCreate(getLoadingDialog(MIDDLE_SIZE));
+        showOnlyDialog(middleLoadingDialog);
+    }
+
+    public void showLargeLoading(CharSequence loadtext) {
+        largeLoadingDialog.setCreate(getLoadingDialog(LARGE_SIZE, loadtext));
+        showOnlyDialog(largeLoadingDialog);
+    }
+
+    public void showMiddleLoading(CharSequence loadtext) {
+        middleLoadingDialog.setCreate(getLoadingDialog(MIDDLE_SIZE, loadtext));
         showOnlyDialog(middleLoadingDialog);
     }
 
     public void showSmallLoading() {
         showOnlyDialog(smallLoadingDialog);
+    }
+
+    public NormalDFragment getSmallLoadingDialog() {
+        return smallLoadingDialog;
+    }
+
+    public NormalDFragment getMiddleLoadingDialog() {
+        return middleLoadingDialog;
+    }
+
+    public NormalDFragment getLargeLoadingDialog() {
+        return largeLoadingDialog;
     }
 
     public void showLoading(float dimAmout, final int size, final CharSequence loadtext) {
