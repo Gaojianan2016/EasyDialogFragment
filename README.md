@@ -12,7 +12,7 @@ allprojects {
 
 
 dependencies {
-    implementation 'com.github.Gaojianan2016:EasyDialogFragment:1.0.0'
+    implementation 'com.github.Gaojianan2016:EasyDialogFragment:1.0.1'
 }
 ```
 
@@ -25,20 +25,22 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
+import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.shoumi.easydialogfragmentlibrary.DFragmentManager;
+import com.shoumi.easydialogfragmentlibrary.EasyDFragmentManager;
+import com.shoumi.easydialogfragmentlibrary.NormalDFragment;
 
 public class MainActivity extends AppCompatActivity {
 
-    private DFragmentManager manager;
+    private EasyDFragmentManager manager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        manager = new DFragmentManager(this);
+        manager = new EasyDFragmentManager(this);
 
         findViewById(R.id.btn1).setOnClickListener(new View.OnClickListener() {
             @Override
@@ -79,7 +81,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn4).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                manager.showEasyInputDialog("我是Easy自带的输入样式", 50, new DFragmentManager.EasyInputListener() {
+                manager.showEasyInputDialog("我是Easy自带的输入样式", 50, new EasyDFragmentManager.EasyInputListener() {
                     @Override
                     public void confirm(View v, Editable msg, int maxSize) {
                         Toast.makeText(MainActivity.this, "你输入了\n" + msg, Toast.LENGTH_SHORT).show();
@@ -127,6 +129,36 @@ public class MainActivity extends AppCompatActivity {
                 manager.showNormalDFragment(R.layout.dialog_test);
             }
         });
+
+        findViewById(R.id.btn10).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                showDialog("1", 0.01f);
+                showDialog("2", 0.02f);
+                showDialog("3", 0.03f);
+                showDialog("1", 0.8f);
+            }
+        });
+    }
+
+    private void showDialog(final String s, float t) {
+        findViewById(R.id.btn10).postDelayed(new Runnable() {
+            @Override
+            public void run() {
+                switch (s) {
+                    case "1":
+                        manager.showSmallLoading();
+                        break;
+                    case "2":
+                        manager.showMiddleLoading();
+                        break;
+                    case "3":
+                    default:
+                        manager.showLargeLoading();
+                        break;
+                }
+            }
+        }, (long) (t * 1000));
     }
 
     @Override

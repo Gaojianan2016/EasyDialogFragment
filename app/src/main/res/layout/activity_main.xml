@@ -69,4 +69,11 @@
         android:layout_height="wrap_content"
         android:text="自定义Dialog"
         android:textAllCaps="false" />
+
+    <Button
+        android:id="@+id/btn10"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="多个Dialog"
+        android:textAllCaps="false" />
 </LinearLayout>

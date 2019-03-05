@@ -28,26 +28,28 @@ import java.util.concurrent.CopyOnWriteArrayList;
  * @time 2019/3/1 16:00
  */
 
-public class DFragmentManager {
-    private static final String TAG = "DFragmentManager";
-
+public class EasyDFragmentManager {
     public final static int SMALL_SIZE = 2;
     public final static int MIDDLE_SIZE = 1;
     public final static int LARGE_SIZE = 0;
-
+    private static final String TAG = "EasyDFragmentManager";
     private FragmentManager fm;
     private Activity activity;
 
     private CopyOnWriteArrayList<BaseDFragment> mDFragments;
     private BaseDFragment.DialogCancelListener dialogCancelListener;
 
-    public DFragmentManager(AppCompatActivity activity) {
+    private NormalDFragment smallLoadingDialog;
+    private NormalDFragment middleLoadingDialog;
+    private NormalDFragment largeLoadingDialog;
+
+    public EasyDFragmentManager(AppCompatActivity activity) {
         fm = activity.getSupportFragmentManager();
         this.activity = activity;
         init();
     }
 
-    public DFragmentManager(Fragment fragment) {
+    public EasyDFragmentManager(Fragment fragment) {
         fm = fragment.getChildFragmentManager();
         activity = fragment.getActivity();
         init();
@@ -58,9 +60,13 @@ public class DFragmentManager {
         dialogCancelListener = new BaseDFragment.DialogCancelListener() {
             @Override
             public void onCancel(DialogFragment dialogFragment) {
+                Log.i(TAG, "touch or back dissmiss: " + dialogFragment);
                 mDFragments.remove(dialogFragment);
             }
         };
+        smallLoadingDialog = getLoadingDialog(SMALL_SIZE);
+        middleLoadingDialog = getLoadingDialog(MIDDLE_SIZE);
+        largeLoadingDialog = getLoadingDialog(LARGE_SIZE);
     }
 
     private void show(BaseDFragment dFragment) {
@@ -86,6 +92,16 @@ public class DFragmentManager {
         show(dFragment);
     }
 
+    public void showOnlyDialog(BaseDFragment dFragment) {
+        if (dFragment == null) {
+            Log.w(TAG, "dFragment is null.");
+            return;
+        }
+        if (!mDFragments.contains(dFragment)) {
+            show(dFragment);
+        }
+    }
+
     public void dismissDialog(BaseDFragment dFragment) {
         if (mDFragments.contains(dFragment)) {
             dissmiss(dFragment);
@@ -94,9 +110,15 @@ public class DFragmentManager {
 
     public void clearDialog() {
         for (BaseDFragment dFragment : mDFragments) {
-            dissmiss(dFragment);
+            dismissDialog(dFragment);
         }
         mDFragments.clear();
+    }
+
+    public void addOnDialogCancelListener(BaseDFragment.DialogCancelListener listener) {
+        for (BaseDFragment dFragment : mDFragments) {
+            dFragment.addOnDialogCancelListener(listener);
+        }
     }
 
     public NormalDFragment getEasyDialog(int id, IDFragmentConvertView convertView) {
@@ -142,12 +164,12 @@ public class DFragmentManager {
     }
 
     public void showEasyOneBtnDialog(final CharSequence msg, final CharSequence yes,
-                                    final View.OnClickListener yesOnClickListener) {
+                                     final View.OnClickListener yesOnClickListener) {
         showEasyNormalDialog(BaseDFragment.DIMAMOUT, true, msg, yes, yesOnClickListener, "", null);
     }
 
     public void showEasyInputDialog(final CharSequence msg, final int maxSize,
-                                   final EasyInputListener inputListener) {
+                                    final EasyInputListener inputListener) {
         showEasyInputDialog(BaseDFragment.DIMAMOUT, msg, "提交", maxSize, inputListener);
     }
 
@@ -156,8 +178,8 @@ public class DFragmentManager {
     }
 
     public void showEasyNormalDialog(float dimAmout, final boolean isOneBtn, final CharSequence msg, final CharSequence yes,
-                                    final View.OnClickListener yesOnClickListener, final CharSequence no,
-                                    final View.OnClickListener noOnClickListener) {
+                                     final View.OnClickListener yesOnClickListener, final CharSequence no,
+                                     final View.OnClickListener noOnClickListener) {
         NormalDFragment dFragment = getEasyDialog(R.layout.dialog_ios_normal, new IDFragmentConvertView() {
             @Override
             public void convertView(ViewHolder holder, final DialogFragment dialogFragment) {
@@ -194,7 +216,7 @@ public class DFragmentManager {
     }
 
     public void showEasyInputDialog(float dimAmout, final CharSequence msg, final CharSequence yes, final int maxSize,
-                                   final EasyInputListener inputListener) {
+                                    final EasyInputListener inputListener) {
         NormalDFragment dFragment = getEasyDialog(R.layout.dialog_ios_input, new IDFragmentConvertView() {
             @Override
             public void convertView(ViewHolder holder, final DialogFragment dialogFragment) {
@@ -247,7 +269,7 @@ public class DFragmentManager {
     }
 
     public void showEasyDelayDialog(float dimAmout, final CharSequence msg, final int time, final CharSequence yes,
-                                   final View.OnClickListener yesOnClickListener) {
+                                    final View.OnClickListener yesOnClickListener) {
         NormalDFragment dFragment = getEasyDialog(R.layout.dialog_ios_normal, new IDFragmentConvertView() {
             @Override
             public void convertView(ViewHolder holder, final DialogFragment dialogFragment) {
@@ -294,32 +316,20 @@ public class DFragmentManager {
         showDialog(dFragment);
     }
 
-    public void showLargeLoading() {
-        showLargeLoading("加载中");
+    public NormalDFragment getLoadingDialog(final int size) {
+        return getLoadingDialog(size, null);
     }
 
-    public void showMiddleLoading() {
-        showMiddleLoading("加载中");
-    }
-
-    public void showSmallLoading() {
-        showLoading(0, SMALL_SIZE, null);
-    }
-
-    public void showLargeLoading(String loadtext) {
-        showLoading(0, LARGE_SIZE, loadtext);
-    }
-
-    public void showMiddleLoading(String loadtext) {
-        showLoading(0, MIDDLE_SIZE, loadtext);
-    }
-
-    public void showLoading(float dimAmout, final int size, final CharSequence loadtext) {
+    public NormalDFragment getLoadingDialog(final int size, final CharSequence loadtext) {
         NormalDFragment dFragment = getEasyDialog(R.layout.dialog_loading, new IDFragmentConvertView() {
             @Override
             public void convertView(ViewHolder holder, DialogFragment dialogFragment) {
                 TextView tv = holder.findView(R.id.loadtext_dialog);
-                tv.setText(loadtext);
+                if (loadtext != null) {
+                    tv.setText(loadtext);
+                } else {
+                    tv.setVisibility(View.GONE);
+                }
                 switch (size) {
                     case SMALL_SIZE:
                         tv.setVisibility(View.GONE);
@@ -347,10 +357,26 @@ public class DFragmentManager {
                 edge /= 3;
                 break;
         }
-
         dFragment.setWidth(edge);
         dFragment.setHeight(edge);
         dFragment.setCloseOnTouchOutside(false);
+        return dFragment;
+    }
+
+    public void showLargeLoading() {
+        showDialog(largeLoadingDialog);
+    }
+
+    public void showMiddleLoading() {
+        showDialog(middleLoadingDialog);
+    }
+
+    public void showSmallLoading() {
+        showDialog(smallLoadingDialog);
+    }
+
+    public void showLoading(float dimAmout, final int size, final CharSequence loadtext) {
+        NormalDFragment dFragment = getLoadingDialog(size, loadtext);
         dFragment.setDimAmout(dimAmout);
         showDialog(dFragment);
     }
