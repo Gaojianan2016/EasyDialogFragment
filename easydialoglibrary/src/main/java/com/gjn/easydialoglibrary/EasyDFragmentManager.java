@@ -29,10 +29,12 @@ import java.util.concurrent.CopyOnWriteArrayList;
  */
 
 public class EasyDFragmentManager {
+    private static final String TAG = "EasyDFragmentManager";
+
     public final static int SMALL_SIZE = 2;
     public final static int MIDDLE_SIZE = 1;
     public final static int LARGE_SIZE = 0;
-    private static final String TAG = "EasyDFragmentManager";
+
     private FragmentManager fm;
     private Activity activity;
 
