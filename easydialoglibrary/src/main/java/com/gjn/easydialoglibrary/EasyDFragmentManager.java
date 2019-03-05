@@ -364,15 +364,15 @@ public class EasyDFragmentManager {
     }
 
     public void showLargeLoading() {
-        showDialog(largeLoadingDialog);
+        showOnlyDialog(largeLoadingDialog);
     }
 
     public void showMiddleLoading() {
-        showDialog(middleLoadingDialog);
+        showOnlyDialog(middleLoadingDialog);
     }
 
     public void showSmallLoading() {
-        showDialog(smallLoadingDialog);
+        showOnlyDialog(smallLoadingDialog);
     }
 
     public void showLoading(float dimAmout, final int size, final CharSequence loadtext) {
