@@ -1,13 +1,13 @@
-package com.shoumi.easydialogfragmentlibrary;
+package com.gjn.easydialoglibrary;
 
 import android.support.annotation.LayoutRes;
 import android.support.v4.app.DialogFragment;
 import android.support.v7.app.AlertDialog;
 import android.view.View;
 
-import com.shoumi.easydialogfragmentlibrary.base.BaseDFragment;
-import com.shoumi.easydialogfragmentlibrary.base.IDFragmentConvertView;
-import com.shoumi.easydialogfragmentlibrary.base.ViewHolder;
+import com.gjn.easydialoglibrary.base.BaseDFragment;
+import com.gjn.easydialoglibrary.base.IDFragmentConvertView;
+import com.gjn.easydialoglibrary.base.ViewHolder;
 
 /**
  * @author gjn

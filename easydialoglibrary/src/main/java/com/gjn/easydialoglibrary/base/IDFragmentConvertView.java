@@ -1,4 +1,4 @@
-package com.shoumi.easydialogfragmentlibrary.base;
+package com.gjn.easydialoglibrary.base;
 
 import android.support.v4.app.DialogFragment;
 

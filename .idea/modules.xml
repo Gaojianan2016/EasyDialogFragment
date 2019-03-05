@@ -4,7 +4,7 @@
     <modules>
       <module fileurl="file://$PROJECT_DIR$/EasyDialogFragment.iml" filepath="$PROJECT_DIR$/EasyDialogFragment.iml" />
       <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
-      <module fileurl="file://$PROJECT_DIR$/easydialogfragmentlibrary/easydialogfragmentlibrary.iml" filepath="$PROJECT_DIR$/easydialogfragmentlibrary/easydialogfragmentlibrary.iml" />
+      <module fileurl="file://$PROJECT_DIR$/easydialoglibrary/easydialoglibrary.iml" filepath="$PROJECT_DIR$/easydialoglibrary/easydialoglibrary.iml" />
     </modules>
   </component>
 </project>

@@ -1,1 +1,1 @@
-include ':app', ':easydialogfragmentlibrary'
+include ':app', ':easydialoglibrary'

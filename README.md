@@ -12,7 +12,7 @@ allprojects {
 
 
 dependencies {
-    implementation 'com.github.Gaojianan2016:EasyDialogFragment:1.0.1'
+    implementation 'com.github.Gaojianan2016:EasyDialogFragment:1.0.2'
 }
 ```
 
@@ -25,12 +25,11 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.shoumi.easydialogfragmentlibrary.EasyDFragmentManager;
-import com.shoumi.easydialogfragmentlibrary.NormalDFragment;
+import com.gjn.easydialoglibrary.EasyDFragmentManager;
+
 
 public class MainActivity extends AppCompatActivity {
 

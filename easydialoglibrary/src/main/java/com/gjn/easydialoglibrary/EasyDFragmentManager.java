@@ -1,4 +1,4 @@
-package com.shoumi.easydialogfragmentlibrary;
+package com.gjn.easydialoglibrary;
 
 import android.app.Activity;
 import android.content.DialogInterface;
@@ -17,9 +17,9 @@ import android.view.View;
 import android.widget.EditText;
 import android.widget.TextView;
 
-import com.shoumi.easydialogfragmentlibrary.base.BaseDFragment;
-import com.shoumi.easydialogfragmentlibrary.base.IDFragmentConvertView;
-import com.shoumi.easydialogfragmentlibrary.base.ViewHolder;
+import com.gjn.easydialoglibrary.base.BaseDFragment;
+import com.gjn.easydialoglibrary.base.IDFragmentConvertView;
+import com.gjn.easydialoglibrary.base.ViewHolder;
 
 import java.util.concurrent.CopyOnWriteArrayList;
 
@@ -324,7 +324,7 @@ public class EasyDFragmentManager {
         NormalDFragment dFragment = getEasyDialog(R.layout.dialog_loading, new IDFragmentConvertView() {
             @Override
             public void convertView(ViewHolder holder, DialogFragment dialogFragment) {
-                TextView tv = holder.findView(R.id.loadtext_dialog);
+                TextView tv = holder.findView(R.id.loadingtext_dialog);
                 if (loadtext != null) {
                     tv.setText(loadtext);
                 } else {

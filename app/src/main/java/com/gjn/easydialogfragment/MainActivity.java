@@ -4,12 +4,11 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
-import android.util.Log;
 import android.view.View;
 import android.widget.Toast;
 
-import com.shoumi.easydialogfragmentlibrary.EasyDFragmentManager;
-import com.shoumi.easydialogfragmentlibrary.NormalDFragment;
+import com.gjn.easydialoglibrary.EasyDFragmentManager;
+
 
 public class MainActivity extends AppCompatActivity {
 

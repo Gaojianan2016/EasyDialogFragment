@@ -1,4 +1,4 @@
-package com.shoumi.easydialogfragmentlibrary.base;
+package com.gjn.easydialoglibrary.base;
 
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -28,10 +28,13 @@ import java.util.List;
  */
 
 public abstract class BaseDFragment extends DialogFragment implements IDFragmentConvertView {
+    private static final String TAG = "BaseDFragment";
+
     public static final int WRAP_CONTENT = ViewPager.LayoutParams.WRAP_CONTENT;
     public static final int MATCH_PARENT = ViewPager.LayoutParams.MATCH_PARENT;
+
     public static final float DIMAMOUT = 0.7f;
-    private static final String TAG = "BaseDFragment";
+
     private boolean isCloseOnTouchOutside = true;
     private boolean isCanClose = true;
     private boolean isShowAnimations = false;

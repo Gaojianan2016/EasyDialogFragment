@@ -1,4 +1,4 @@
-package com.shoumi.easydialogfragmentlibrary.base;
+package com.gjn.easydialoglibrary.base;
 
 import android.app.Activity;
 import android.util.SparseArray;
