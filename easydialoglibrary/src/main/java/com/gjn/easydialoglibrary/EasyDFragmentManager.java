@@ -14,6 +14,7 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -326,23 +327,30 @@ public class EasyDFragmentManager {
         NormalDFragment dFragment = getEasyDialog(R.layout.dialog_loading, new IDFragmentConvertView() {
             @Override
             public void convertView(ViewHolder holder, DialogFragment dialogFragment) {
-                TextView tv = holder.findView(R.id.loadingtext_dialog);
-                if (loadtext != null) {
-                    tv.setText(loadtext);
-                } else {
-                    tv.setVisibility(View.GONE);
+                TextView tv = null;
+                for (int i = 0; i < ((ViewGroup) holder.getView()).getChildCount(); i++) {
+                    if (((ViewGroup) holder.getView()).getChildAt(i) instanceof TextView) {
+                        tv = (TextView) ((ViewGroup) holder.getView()).getChildAt(i);
+                    }
                 }
-                switch (size) {
-                    case SMALL_SIZE:
+                if (tv != null) {
+                    if (loadtext != null) {
+                        tv.setText(loadtext);
+                    } else {
                         tv.setVisibility(View.GONE);
-                        break;
-                    case MIDDLE_SIZE:
-                        tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
-                        break;
-                    case LARGE_SIZE:
-                    default:
-                        tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
-                        break;
+                    }
+                    switch (size) {
+                        case SMALL_SIZE:
+                            tv.setVisibility(View.GONE);
+                            break;
+                        case MIDDLE_SIZE:
+                            tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+                            break;
+                        case LARGE_SIZE:
+                        default:
+                            tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
+                            break;
+                    }
                 }
             }
         });
