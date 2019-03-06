@@ -1,6 +1,6 @@
 # EasyDialogFragment
 
-依赖使用 [![](https://jitpack.io/v/Gaojianan2016/EasyDialogFragment.svg)](https://jitpack.io/#Gaojianan2016/EasyDialogFragment)
+依赖使用
 ```
 allprojects {
     repositories {
@@ -12,7 +12,7 @@ allprojects {
 
 
 dependencies {
-    implementation 'com.github.Gaojianan2016:EasyDialogFragment:x.y.z'
+    implementation 'com.github.Gaojianan2016:EasyDialogFragment:1.1.2'
 }
 ```
 
