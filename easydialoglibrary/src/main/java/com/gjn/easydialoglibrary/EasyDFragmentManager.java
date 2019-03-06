@@ -57,9 +57,6 @@ public class EasyDFragmentManager {
         fm = fragment.getChildFragmentManager();
         activity = fragment.getActivity();
         init();
-        smallLoadingDialog = getLoadingDialog(SMALL_SIZE);
-        middleLoadingDialog = getLoadingDialog(MIDDLE_SIZE);
-        largeLoadingDialog = getLoadingDialog(LARGE_SIZE);
     }
 
     private void init() {
@@ -71,6 +68,9 @@ public class EasyDFragmentManager {
                 mDFragments.remove(dialogFragment);
             }
         };
+        smallLoadingDialog = getLoadingDialog(SMALL_SIZE);
+        middleLoadingDialog = getLoadingDialog(MIDDLE_SIZE);
+        largeLoadingDialog = getLoadingDialog(LARGE_SIZE);
     }
 
     private void show(BaseDFragment dFragment) {
