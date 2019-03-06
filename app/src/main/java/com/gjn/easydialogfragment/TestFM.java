@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -31,6 +32,8 @@ public class TestFM extends Fragment {
 
         manager = new EasyDFragmentManager(this);
 
+
+
         Button btn = view.findViewById(R.id.button);
         Button btn2 = view.findViewById(R.id.button2);
         Button btn3 = view.findViewById(R.id.button3);
@@ -41,6 +44,8 @@ public class TestFM extends Fragment {
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                int w = getActivity().getResources().getDisplayMetrics().widthPixels;
+                Log.e("-s-", "w == " + w);
                 manager.showLargeLoading();
             }
         });

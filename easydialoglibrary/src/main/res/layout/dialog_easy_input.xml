@@ -7,11 +7,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center"
-        android:background="@drawable/dialog_ios_bg"
+        android:background="@drawable/dialog_easy_bg"
         android:orientation="vertical">
 
         <TextView
-            android:id="@+id/msg_dialog"
+            android:id="@+id/msg_easydialog"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_margin="15dp"
@@ -26,10 +26,10 @@
             android:padding="20dp">
 
             <EditText
-                android:id="@+id/content_dialog"
+                android:id="@+id/content_easydialog"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@drawable/dialog_ios_line_bg"
+                android:background="@drawable/dialog_easy_line_bg"
                 android:ems="10"
                 android:gravity="top|start"
                 android:hint="请输入内容"
@@ -38,7 +38,7 @@
                 android:textSize="16sp" />
 
             <TextView
-                android:id="@+id/size_dialog"
+                android:id="@+id/size_easydialog"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_gravity="bottom|end"
@@ -52,7 +52,7 @@
             android:layout_height="0.5dp"
             android:background="#5000" />
 
-        <include layout="@layout/dialog_ios_button" />
+        <include layout="@layout/dialog_easy_button" />
 
     </LinearLayout>
 </FrameLayout>

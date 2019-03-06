@@ -12,7 +12,7 @@ allprojects {
 
 
 dependencies {
-    implementation 'com.github.Gaojianan2016:EasyDialogFragment:1.1.0'
+    implementation 'com.github.Gaojianan2016:EasyDialogFragment:1.1.1'
 }
 ```
 
@@ -22,6 +22,7 @@ MainActivity.class
 package com.gjn.easydialogfragment;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 import android.text.Editable;
@@ -111,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
         findViewById(R.id.btn7).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                manager.showMiddleLoading();
+                manager.showMiddleLoading("加载中");
             }
         });
 
@@ -136,6 +137,12 @@ public class MainActivity extends AppCompatActivity {
                 showDialog("2", 0.02f);
                 showDialog("3", 0.03f);
                 showDialog("1", 0.8f);
+            }
+        });
+        findViewById(R.id.btn11).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(MainActivity.this, Main2Activity.class));
             }
         });
     }

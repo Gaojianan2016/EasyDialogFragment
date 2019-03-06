@@ -14,7 +14,6 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -152,8 +151,8 @@ public class EasyDFragmentManager {
     }
 
     public NormalDFragment showNormalDFragment(CharSequence title, CharSequence msg,
-                                    CharSequence yes, DialogInterface.OnClickListener yesOnClickListener,
-                                    CharSequence no, DialogInterface.OnClickListener noOnClickListener) {
+                                               CharSequence yes, DialogInterface.OnClickListener yesOnClickListener,
+                                               CharSequence no, DialogInterface.OnClickListener noOnClickListener) {
         AlertDialog.Builder builder = new AlertDialog.Builder(activity);
         builder.setTitle(title).setMessage(msg).setPositiveButton(yes, yesOnClickListener)
                 .setNegativeButton(no, noOnClickListener);
@@ -171,12 +170,12 @@ public class EasyDFragmentManager {
     }
 
     public NormalDFragment showEasyOneBtnDialog(final CharSequence msg, final CharSequence yes,
-                                     final View.OnClickListener yesOnClickListener) {
+                                                final View.OnClickListener yesOnClickListener) {
         return showEasyNormalDialog(BaseDFragment.DIMAMOUT, true, msg, yes, yesOnClickListener, "", null);
     }
 
     public NormalDFragment showEasyInputDialog(final CharSequence msg, final int maxSize,
-                                    final EasyInputListener inputListener) {
+                                               final EasyInputListener inputListener) {
         return showEasyInputDialog(BaseDFragment.DIMAMOUT, msg, "提交", maxSize, inputListener);
     }
 
@@ -185,14 +184,14 @@ public class EasyDFragmentManager {
     }
 
     public NormalDFragment showEasyNormalDialog(float dimAmout, final boolean isOneBtn, final CharSequence msg, final CharSequence yes,
-                                     final View.OnClickListener yesOnClickListener, final CharSequence no,
-                                     final View.OnClickListener noOnClickListener) {
-        NormalDFragment dFragment = getEasyDialog(R.layout.dialog_ios_normal, new IDFragmentConvertView() {
+                                                final View.OnClickListener yesOnClickListener, final CharSequence no,
+                                                final View.OnClickListener noOnClickListener) {
+        NormalDFragment dFragment = getEasyDialog(R.layout.dialog_easy_normal, new IDFragmentConvertView() {
             @Override
             public void convertView(ViewHolder holder, final DialogFragment dialogFragment) {
-                holder.setTextViewText(R.id.msg_dialog, msg);
-                holder.setTextViewText(R.id.yes_dialog, yes);
-                holder.findView(R.id.yes_dialog).setOnClickListener(new View.OnClickListener() {
+                holder.setTextViewText(R.id.msg_easydialog, msg);
+                holder.setTextViewText(R.id.yes_easydialog, yes);
+                holder.findView(R.id.yes_easydialog).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         if (yesOnClickListener != null) {
@@ -202,11 +201,11 @@ public class EasyDFragmentManager {
                     }
                 });
                 if (isOneBtn) {
-                    holder.findView(R.id.line_dialog).setVisibility(View.GONE);
-                    holder.findView(R.id.no_dialog).setVisibility(View.GONE);
+                    holder.findView(R.id.line_easydialog).setVisibility(View.GONE);
+                    holder.findView(R.id.no_easydialog).setVisibility(View.GONE);
                 } else {
-                    holder.setTextViewText(R.id.no_dialog, no);
-                    holder.findView(R.id.no_dialog).setOnClickListener(new View.OnClickListener() {
+                    holder.setTextViewText(R.id.no_easydialog, no);
+                    holder.findView(R.id.no_easydialog).setOnClickListener(new View.OnClickListener() {
                         @Override
                         public void onClick(View v) {
                             if (noOnClickListener != null) {
@@ -224,16 +223,16 @@ public class EasyDFragmentManager {
     }
 
     public NormalDFragment showEasyInputDialog(float dimAmout, final CharSequence msg, final CharSequence yes, final int maxSize,
-                                    final EasyInputListener inputListener) {
-        NormalDFragment dFragment = getEasyDialog(R.layout.dialog_ios_input, new IDFragmentConvertView() {
+                                               final EasyInputListener inputListener) {
+        NormalDFragment dFragment = getEasyDialog(R.layout.dialog_easy_input, new IDFragmentConvertView() {
             @Override
             public void convertView(ViewHolder holder, final DialogFragment dialogFragment) {
-                holder.setTextViewText(R.id.msg_dialog, msg);
-                holder.setTextViewText(R.id.yes_dialog, yes);
-                final TextView tv = holder.findView(R.id.size_dialog);
+                holder.setTextViewText(R.id.msg_easydialog, msg);
+                holder.setTextViewText(R.id.yes_easydialog, yes);
+                final TextView tv = holder.findView(R.id.size_easydialog);
                 tv.setText(String.valueOf(maxSize));
                 tv.setTextColor(Color.BLACK);
-                final EditText et = holder.findView(R.id.content_dialog);
+                final EditText et = holder.findView(R.id.content_easydialog);
                 et.addTextChangedListener(new TextWatcher() {
                     @Override
                     public void beforeTextChanged(CharSequence s, int start, int count, int after) {
@@ -254,7 +253,7 @@ public class EasyDFragmentManager {
                         }
                     }
                 });
-                holder.findView(R.id.yes_dialog).setOnClickListener(new View.OnClickListener() {
+                holder.findView(R.id.yes_easydialog).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         if (inputListener != null) {
@@ -263,7 +262,7 @@ public class EasyDFragmentManager {
                         dialogFragment.dismissAllowingStateLoss();
                     }
                 });
-                holder.findView(R.id.no_dialog).setOnClickListener(new View.OnClickListener() {
+                holder.findView(R.id.no_easydialog).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         dialogFragment.dismissAllowingStateLoss();
@@ -278,12 +277,12 @@ public class EasyDFragmentManager {
     }
 
     public NormalDFragment showEasyDelayDialog(float dimAmout, final CharSequence msg, final int time, final CharSequence yes,
-                                    final View.OnClickListener yesOnClickListener) {
-        NormalDFragment dFragment = getEasyDialog(R.layout.dialog_ios_normal, new IDFragmentConvertView() {
+                                               final View.OnClickListener yesOnClickListener) {
+        NormalDFragment dFragment = getEasyDialog(R.layout.dialog_easy_normal, new IDFragmentConvertView() {
             @Override
             public void convertView(ViewHolder holder, final DialogFragment dialogFragment) {
-                holder.setTextViewText(R.id.msg_dialog, msg);
-                final TextView tvYes = holder.findView(R.id.yes_dialog);
+                holder.setTextViewText(R.id.msg_easydialog, msg);
+                final TextView tvYes = holder.findView(R.id.yes_easydialog);
                 tvYes.setText(yes + "(" + time + ")");
                 tvYes.setTextColor(Color.GRAY);
                 tvYes.setEnabled(false);
@@ -311,7 +310,7 @@ public class EasyDFragmentManager {
                         dialogFragment.dismissAllowingStateLoss();
                     }
                 });
-                holder.findView(R.id.no_dialog).setOnClickListener(new View.OnClickListener() {
+                holder.findView(R.id.no_easydialog).setOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
                         timer.cancel();
@@ -344,47 +343,38 @@ public class EasyDFragmentManager {
                 edge /= 3;
                 break;
         }
-        NormalDFragment dFragment = getEasyDialog(R.layout.dialog_loading, new IDFragmentConvertView() {
+        NormalDFragment dFragment = getEasyDialog(R.layout.dialog_easy_loading, new IDFragmentConvertView() {
             @Override
             public void convertView(ViewHolder holder, DialogFragment dialogFragment) {
-                TextView tv = null;
-                ProgressBar pb = null;
-                for (int i = 0; i < ((ViewGroup) holder.getView()).getChildCount(); i++) {
-                    if (((ViewGroup) holder.getView()).getChildAt(i) instanceof TextView) {
-                        tv = (TextView) ((ViewGroup) holder.getView()).getChildAt(i);
-                    }else if(((ViewGroup) holder.getView()).getChildAt(i) instanceof ProgressBar){
-                        pb = (ProgressBar) ((ViewGroup) holder.getView()).getChildAt(i);
-                    }
-                }
-                if (tv != null && pb != null) {
-                    int padding;
-                    if (size == SMALL_SIZE) {
+                TextView tv = holder.findView(R.id.loadtext_easydialog);
+                ProgressBar pb = holder.findView(R.id.loading_easydialog);
+                int padding;
+                if (size == SMALL_SIZE) {
+                    tv.setVisibility(View.GONE);
+                    padding = px2Dip(5);
+                }else {
+                    if (loadtext == null) {
                         tv.setVisibility(View.GONE);
-                        padding = px2Dip(5);
-                    }else {
-                        if (loadtext == null) {
-                            tv.setVisibility(View.GONE);
-                            if (size == MIDDLE_SIZE) {
-                                padding = px2Dip(20);
-                            }else {
-                                padding = px2Dip(35);
-                            }
-                        }else {
-                            tv.setText(loadtext);
-                            if (size == MIDDLE_SIZE) {
-                                padding = px2Dip(5);
-                            }else {
-                                padding = px2Dip(10);
-                            }
-                        }
                         if (size == MIDDLE_SIZE) {
-                            tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+                            padding = px2Dip(20);
                         }else {
-                            tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
+                            padding = px2Dip(35);
+                        }
+                    }else {
+                        tv.setText(loadtext);
+                        if (size == MIDDLE_SIZE) {
+                            padding = px2Dip(5);
+                        }else {
+                            padding = px2Dip(10);
                         }
                     }
-                    pb.setPadding(padding, padding, padding, padding);
+                    if (size == MIDDLE_SIZE) {
+                        tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+                    }else {
+                        tv.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
+                    }
                 }
+                pb.setPadding(padding, padding, padding, padding);
             }
         });
         dFragment.setWidth(edge);
