@@ -418,6 +418,18 @@ public class EasyDFragmentManager {
         return middleLoadingDialog;
     }
 
+    public NormalDFragment getSmallLoadingDialog() {
+        return smallLoadingDialog;
+    }
+
+    public NormalDFragment getMiddleLoadingDialog() {
+        return middleLoadingDialog;
+    }
+
+    public NormalDFragment getLargeLoadingDialog() {
+        return largeLoadingDialog;
+    }
+
     public NormalDFragment showLoading(float dimAmout, final int size, final CharSequence loadtext) {
         NormalDFragment dFragment = getLoadingDialog(size, loadtext);
         dFragment.setDimAmout(dimAmout);
