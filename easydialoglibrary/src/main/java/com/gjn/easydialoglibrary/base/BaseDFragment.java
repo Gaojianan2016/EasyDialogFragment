@@ -160,7 +160,8 @@ public abstract class BaseDFragment extends DialogFragment implements IDFragment
     }
 
     @Override
-    public void onCancel(DialogInterface dialog) {
+    public void onDismiss(DialogInterface dialog) {
+        super.onDismiss(dialog);
         if (mDialogCancelListener != null) {
             mDialogCancelListener.onCancel(this);
         }
