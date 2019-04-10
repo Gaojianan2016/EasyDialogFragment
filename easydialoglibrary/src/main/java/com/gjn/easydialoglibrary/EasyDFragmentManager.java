@@ -270,8 +270,7 @@ public class EasyDFragmentManager {
                 });
             }
         });
-        dFragment.setDimAmout(dimAmout);
-        dFragment.setCloseOnTouchOutside(false);
+        dFragment.setDimAmout(dimAmout).setCloseOnTouchOutside(false);
         showDialog(dFragment);
         return dFragment;
     }
@@ -319,8 +318,7 @@ public class EasyDFragmentManager {
                 });
             }
         });
-        dFragment.setDimAmout(dimAmout);
-        dFragment.setCloseOnTouchOutside(false);
+        dFragment.setDimAmout(dimAmout).setCloseOnTouchOutside(false);
         showDialog(dFragment);
         return dFragment;
     }
@@ -377,9 +375,7 @@ public class EasyDFragmentManager {
                 pb.setPadding(padding, padding, padding, padding);
             }
         });
-        dFragment.setWidth(edge);
-        dFragment.setHeight(edge);
-        dFragment.setCloseOnTouchOutside(false);
+        dFragment.setWidth(edge).setHeight(edge).setCloseOnTouchOutside(false);
         return dFragment;
     }
 

@@ -105,49 +105,58 @@ public abstract class BaseDFragment extends DialogFragment implements IDFragment
         }
     }
 
-    public void setCloseOnTouchOutside(boolean closeOnTouchOutside) {
+    public BaseDFragment setCloseOnTouchOutside(boolean closeOnTouchOutside) {
         isCloseOnTouchOutside = closeOnTouchOutside;
         if (getDialog() != null) {
             getDialog().setCanceledOnTouchOutside(isCloseOnTouchOutside);
         }
+        return this;
     }
 
-    public void setCanClose(boolean cancelable) {
+    public BaseDFragment setCanClose(boolean cancelable) {
         isCanClose = cancelable;
         if (getDialog() != null) {
             getDialog().setCancelable(isCanClose);
         }
+        return this;
     }
 
-    public void setShowAnimations(boolean showAnimations) {
+    public BaseDFragment setShowAnimations(boolean showAnimations) {
         isShowAnimations = showAnimations;
+        return this;
     }
 
-    public void setTransparent(boolean transparent) {
+    public BaseDFragment setTransparent(boolean transparent) {
         isTransparent = transparent;
+        return this;
     }
 
-    public void setWindowAnimations(int windowAnimations) {
+    public BaseDFragment setWindowAnimations(int windowAnimations) {
         this.windowAnimations = windowAnimations;
         if (this.windowAnimations != -1) {
             setShowAnimations(true);
         }
+        return this;
     }
 
-    public void setDimAmout(float dimAmout) {
+    public BaseDFragment setDimAmout(float dimAmout) {
         this.dimAmout = dimAmout;
+        return this;
     }
 
-    public void setWidth(int width) {
+    public BaseDFragment setWidth(int width) {
         this.width = width;
+        return this;
     }
 
-    public void setHeight(int height) {
+    public BaseDFragment setHeight(int height) {
         this.height = height;
+        return this;
     }
 
-    public void setGravity(int gravity) {
+    public BaseDFragment setGravity(int gravity) {
         this.gravity = gravity;
+        return this;
     }
 
     @Override
