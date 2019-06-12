@@ -328,7 +328,15 @@ public class EasyDFragmentManager {
     }
 
     public NormalDFragment getLoadingDialog(final int size, final CharSequence loadtext) {
-        int edge = activity.getResources().getDisplayMetrics().widthPixels;
+
+        int w = activity.getResources().getDisplayMetrics().widthPixels;
+        int h = activity.getResources().getDisplayMetrics().heightPixels;
+        int edge;
+        if(w < h){
+            edge = w;
+        }else {
+            edge = h;
+        }
         switch (size) {
             case SMALL_SIZE:
                 edge /= 7;
