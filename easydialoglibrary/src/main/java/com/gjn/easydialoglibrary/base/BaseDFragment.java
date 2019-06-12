@@ -169,8 +169,8 @@ public abstract class BaseDFragment extends DialogFragment implements IDFragment
     }
 
     @Override
-    public void onDismiss(DialogInterface dialog) {
-        super.onDismiss(dialog);
+    public void onCancel(DialogInterface dialog) {
+        super.onCancel(dialog);
         if (mDialogCancelListener != null) {
             mDialogCancelListener.onCancel(this);
         }
@@ -180,6 +180,19 @@ public abstract class BaseDFragment extends DialogFragment implements IDFragment
             }
         }
     }
+
+//    @Override
+//    public void onDismiss(DialogInterface dialog) {
+//        super.onDismiss(dialog);
+//        if (mDialogCancelListener != null) {
+//            mDialogCancelListener.onCancel(this);
+//        }
+//        if (mDialogCancelListeners != null) {
+//            for (DialogCancelListener listener : mDialogCancelListeners) {
+//                listener.onCancel(this);
+//            }
+//        }
+//    }
 
     public void setOnDialogCancelListener(DialogCancelListener listener) {
         mDialogCancelListener = listener;
